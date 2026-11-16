@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ESAD_CS_R72_M_06_MVC_D005.Models.ViewModels.ArticleViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row px-3 pb-1">
+    <div class="col-12">
+        <h3 class="display-5">Article</h3>
+        <div class="d-flex justify-content-end">
+            <a href="@Url.Action("Create","Home")" class="btn btn-outline-primary btn-sm"><i class="fa fa fa-plus"></i> Add New Article</a>
+        </div>
+        <table class="table table-bordered table-striped table-sm mt-2">
+            <thead class="table-primary">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.Title)</th>
+                    <th>@Html.DisplayNameFor(x => x.PublishDate)</th>
+                    <th>@Html.DisplayNameFor(x => x.Tags)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var w in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(x => w.Title)</td>
+                        <td>@Html.DisplayFor(x => w.PublishDate)</td>
+                        <td>@Html.DisplayFor(x => w.Tags)</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Home", new {id=w.ArticleId})" class="btn btn-outline-success btn-sm"><i class="fa fa fa-pencil"></i> Edit </a>
+                            <a href="@Url.Action("Delete","Home", new {id=w.ArticleId})" class="btn btn-outline-danger btn-sm"><i class="fa fa fa-trash"></i> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model ESAD_CS_R72_M_06_MVC_D005.Models.Article
+@using ESAD_CS_R72_M_06_MVC_D005.Models
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="row gy-1 px-4">
+
+    <div class="col-12">
+        <h5 class="card-title">Add New Article</h5>
+        <h5 class="card-subtitle mb-2 text-muted">Fill up the form and save</h5>
+    </div>
+    <div class="col-12">
+        @using (Html.BeginForm())
+        {
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Title, new { @class = "col-form-label col-form-label-sm col-2" })
+                <div class="col-7">
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control form-control-sm" })
+                </div>
+                <div class="col-3">
+                    @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Publishdate, new { @class = "col-form-label col-form-label-sm col-2" })
+                <div class="col-7">
+                    @Html.TextBoxFor(x => x.Publishdate, new { @class = "form-control form-control-sm", type = "date" })
+                </div>
+                <div class="col-3">
+                    @Html.ValidationMessageFor(x => x.Publishdate, "", new { @class = "text-danger" })
+                </div>
+            </div><div class="row mb-2">
+                <label class="col-form-label col-form-label-sm col-2">Tags</label>
+                <div class="col-7">
+                    @{
+                        foreach (Tag t in ViewBag.CheckBoxData)
+                        {
+                            <div class="form-check-inline">
+                                <input type="checkbox" class="form-check-input" value="@t.TagId" id="tagId_@t.TagId" />
+                                <label class="form-check-label" for="tagId_@t.TagId">@t.TagName</label>
+                            </div>
+                        }
+                    }
+
+                </div>
+                <div class="col-3">
+                    @Html.ValidationMessageFor(x => x.Publishdate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-10 offset-2">
+                    <button type="submit" class="btn btn-primary btn-sm">Save to Database</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
